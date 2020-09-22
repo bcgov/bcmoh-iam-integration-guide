@@ -1,0 +1,33 @@
+@startuml
+(*) ---> "validate target resource"
+     ---> if "valid target resource?" then
+            --->[yes] "Validate Access Token"
+             ---> if "valid?" then
+                --> [yes] "Check for Required Scope"
+                --> if "scope correct?" then
+                --> [yes] "Check HL7-v2 Message Header"
+                    --> if "header correct?" then
+                    --> [yes] "Provider API Process Message"
+                    ---> if "Process successfully?" then
+                    ---> [yes] "Return 200 OK"
+                    --> (*)
+                    else
+                     ---> [no] "Return API specific error"
+                     ---> (*)
+                    endif 
+                     else 
+                      --> [no] "Return 400 Bad Request"
+                      --> (*)
+                     endif
+                else 
+                --> [no] "Return 401 Unauthorized"
+                endif
+        else 
+        --> [no] "Return 401 Unauthorized"
+        --> (*)
+        endif
+    else 
+        ---> [no] "Return 404 Invalid Resource" 
+        ---> (*)
+   endif  
+   @enduml 
