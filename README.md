@@ -1,7 +1,4 @@
- Welcome to the  BC Health IAM integration guide github repository
-# <application_license_badge>
-<!--- [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE) --->
-
+** Welcome to the  BC Health IAM integration guide github repository
 ## Project Status
 - [x] Development
 - [ ] Production/Maintenance
