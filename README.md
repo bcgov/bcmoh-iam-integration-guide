@@ -1,4 +1,4 @@
-** Welcome to the  BC Health IAM integration guide github repository
+Welcome to the  BC Health IAM integration guide github repository
 ## Project Status
 - [x] Development
 - [ ] Production/Maintenance
