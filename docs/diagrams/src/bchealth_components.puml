@@ -1,10 +1,10 @@
 @startuml
-package "* common Components *" {
-[Authorization service]
-[Audit & logging ]
-[Authentication service]
-[User self-service]
-[Administration service]
+rectangle "* common Components *" {
+[Authorization service] #White
+[Audit & logging ] #White
+[Authentication service] #White
+[User self-service] #White
+[Administration service] #White
 }
 newpage
 package "Authentication Service" {
@@ -20,7 +20,7 @@ LINK --> [ID linking]
  [view application role]
 }
 
-package "Administration" {
+package "Administration service" {
 [View user]
 [Query clients]
 [Manage users]
@@ -33,7 +33,4 @@ package "Authorization Service" {
 [RBAC - users accessing BC health web application]
 [RBAC - client application access to BC Health resources behind the BC Health API gateway]
 }
-
-
 @enduml
-
