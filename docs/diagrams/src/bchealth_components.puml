@@ -1,0 +1,39 @@
+@startuml
+package "* common Components *" {
+[Authorization service]
+[Audit & logging ]
+[Authentication service]
+[User self-service]
+[Administration service]
+}
+newpage
+package "Authentication Service" {
+[IDIR] --> LINK
+[MoH LDAP] --> LINK
+[PHSA] --> LINK
+[BCEID] --> LINK
+FUTURE --> [BCSC]
+}
+
+package "user self-service" {
+LINK --> [ID linking]
+ [view application role]
+}
+
+package "Administration" {
+[View user]
+[Query clients]
+[Manage users]
+[Manage clients]
+[View events]
+[identity provider configuration]
+}
+newpage
+package "Authorization Service" {
+[RBAC - users accessing BC health web application]
+[RBAC - client application access to BC Health resources behind the BC Health API gateway]
+}
+
+
+@enduml
+
