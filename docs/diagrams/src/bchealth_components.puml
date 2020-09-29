@@ -12,9 +12,11 @@ package "Authentication Service" {
 [MoH LDAP] --> LINK
 [PHSA] --> LINK
 [BCEID] --> LINK
-FUTURE --> [BCSC]
+[BCSC(future)] --> LINK
 }
-
+package "Audit & Logging" {
+[ Record events ] --> view
+}
 package "user self-service" {
 LINK --> [ID linking]
  [view application role]
@@ -25,7 +27,7 @@ package "Administration service" {
 [Query clients]
 [Manage users]
 [Manage clients]
-[View events]
+view --> [View events]
 [identity provider configuration]
 }
 newpage
