@@ -8,11 +8,13 @@ rectangle "* common Components *" {
 }
 newpage
 package "Authentication Service" {
+rectangle "BC Health identity federation" {
 [IDIR] --> LINK
 [MoH LDAP] --> LINK
 [PHSA] --> LINK
 [BCEID] --> LINK
 [BCSC(future)] --> LINK
+}
 [common login page] 
 [client authentication JWT]
 [client authentication ID/secret]
