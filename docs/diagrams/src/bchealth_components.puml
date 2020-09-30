@@ -13,6 +13,9 @@ package "Authentication Service" {
 [PHSA] --> LINK
 [BCEID] --> LINK
 [BCSC(future)] --> LINK
+[common login page] 
+[client authentication JWT]
+[client authentication ID/secret]
 }
 package "Audit & Logging" {
 [ Record events ] --> view
