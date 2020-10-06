@@ -1,0 +1,22 @@
+@startuml OIDC Web App flow
+
+autonumber
+
+    actor "User  \n(browser / user-agent)"
+
+    "User  \n(browser / user-agent)"  ->  "Web Server\n (relying party)" : request access to protected resource
+
+    "Web Server\n (relying party)" -> "BC Health OIDC service \n (keycloak OIDC service)" : Authentication request
+
+    "BC Health OIDC service \n (keycloak OIDC service)" -> "IDP in ID Federation" : Redirect AuthN to IDP
+
+   "User  \n(browser / user-agent)" -> "IDP in ID Federation" : User Authenticate
+
+    "BC Health OIDC service \n (keycloak OIDC service)" -> "Web Server\n (relying party)" : Return Authorization code
+
+    "Web Server\n (relying party)" <-> "BC Health OIDC service \n (keycloak OIDC service)"  : Retrieve ID and access token using Authorization code
+
+    "Web Server\n (relying party)" -> "Web Server\n (relying party)" : verify provileges checking role claims in access token \n and use identity claims in ID token
+    
+    "Web Server\n (relying party)" -> "User  \n(browser / user-agent)"  : return secured resource to user if privileged,\n  otherwise, return error message 
+@enduml
