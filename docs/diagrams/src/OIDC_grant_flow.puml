@@ -1,4 +1,4 @@
-@startuml OIDC Web App flow
+@startuml OIDC_grant_flow
 
 autonumber
 
@@ -15,6 +15,8 @@ autonumber
     "BC Health OIDC service \n (keycloak OIDC service)" -> "Web Server\n (relying party)" : Return Authorization code
 
     "Web Server\n (relying party)" <-> "BC Health OIDC service \n (keycloak OIDC service)"  : Retrieve ID and access token using Authorization code
+
+    "Web Server\n (relying party)" -> "Web Server\n (relying party)" : verify tokens using the public key of the BC Health OIDC issuing server
 
     "Web Server\n (relying party)" -> "Web Server\n (relying party)" : verify provileges checking role claims in access token \n and use identity claims in ID token
     
