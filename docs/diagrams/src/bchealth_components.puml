@@ -19,13 +19,13 @@ rectangle "BC Health identity federation" {
 [client authentication JWT]
 [client authentication ID/secret]
 }
-newpage
-package "Audit & Logging" {
-[ Record events ] --> view
-}
 package "user self-services" {
 LINK --> [ID linking]
  [view application role]
+}
+newpage
+package "Audit & Logging" {
+[ Record events ] --> view
 }
 
 package "Administration services" {

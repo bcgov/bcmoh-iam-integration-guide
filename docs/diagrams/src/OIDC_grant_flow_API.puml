@@ -1,0 +1,23 @@
+@startuml OIDC_grant_flow
+autonumber
+
+    actor "User  \n(browser / user-agent)"
+
+    "User  \n(browser / user-agent)"  ->  "client application\n (relying party)" : request access to protected API resource
+
+    "client application\n (relying party)" -> "BC Health OIDC service \n (keycloak OIDC service)" : Authentication request
+
+    "BC Health OIDC service \n (keycloak OIDC service)" -> "IDP in ID Federation" : Redirect AuthN to IDP
+
+   "User  \n(browser / user-agent)" -> "IDP in ID Federation" : User Authenticate
+
+    "BC Health OIDC service \n (keycloak OIDC service)" -> "client application\n (relying party)" : Return Authorization code
+
+    "client application\n (relying party)" <-> "BC Health OIDC service \n (keycloak OIDC service)"  : Retrieve ID and access token using Authorization code
+
+    "client application\n (relying party)" -> "client application\n (relying party)" : verify tokens using the public key of the BC Health OIDC issuing server
+
+    "client application\n (relying party)" -> "client application\n (relying party)" : verify provileges checking role claims in access token \n and use identity claims in ID token
+
+    "client application\n (relying party)" -> "User  \n(browser / user-agent)"  : return secured resource to user if privileged,\n  otherwise, return error message
+@enduml
