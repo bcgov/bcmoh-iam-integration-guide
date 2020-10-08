@@ -1,5 +1,5 @@
 @startuml
-rectangle "BC health authentication and authorization services Components" {
+rectangle "BC health OIDC authentication and authorization services Components" {
 [Authorization services] #White
 [Audit & logging ] #White
 [Authentication services] #White
