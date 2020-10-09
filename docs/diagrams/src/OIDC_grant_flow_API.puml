@@ -3,21 +3,30 @@ autonumber
 
     actor "User  \n(browser / user-agent)"
 
-    "User  \n(browser / user-agent)"  ->  "client application\n (relying party)" : request access to protected API resource
+   "User  \n(browser / user-agent)" -> "client application\n (relying party)" : (assumption) user is authenticated
 
-    "client application\n (relying party)" -> "BC Health OIDC service \n (keycloak OIDC service)" : Authentication request
+   "User  \n(browser / user-agent)" -> "client application\n (relying party)" :  user access protected resources from provider API
 
-    "BC Health OIDC service \n (keycloak OIDC service)" -> "IDP in ID Federation" : Redirect AuthN to IDP
+    "client application\n (relying party)" -> "BC Health OIDC service \n (keycloak OIDC service)" : Authorization request
 
-   "User  \n(browser / user-agent)" -> "IDP in ID Federation" : User Authenticate
+      "User  \n(browser / user-agent)" -> "BC Health OIDC service \n (keycloak OIDC service)" : User provide consent ( if enabled)
 
-    "BC Health OIDC service \n (keycloak OIDC service)" -> "client application\n (relying party)" : Return Authorization code
+    "BC Health OIDC service \n (keycloak OIDC service)" -> "client application\n (relying party)" : Access Token
 
-    "client application\n (relying party)" <-> "BC Health OIDC service \n (keycloak OIDC service)"  : Retrieve ID and access token using Authorization code
+    "client application\n (relying party)" -> "BC Health API Gateway" : API provider request (access token)
 
-    "client application\n (relying party)" -> "client application\n (relying party)" : verify tokens using the public key of the BC Health OIDC issuing server
+    "BC Health API Gateway"  -> "BC Health API Gateway"  : validate token and check authorization
 
-    "client application\n (relying party)" -> "client application\n (relying party)" : verify provileges checking role claims in access token \n and use identity claims in ID token
+    "BC Health API Gateway"  -> "provider API \n ( backend API)" : forward request (access token)
 
-    "client application\n (relying party)" -> "User  \n(browser / user-agent)"  : return secured resource to user if privileged,\n  otherwise, return error message
+   "provider API \n ( backend API)" <->  "BC Health OIDC service \n (keycloak OIDC service)"  :  (if needed) request userinfo (access token)
+
+   "provider API \n ( backend API)" -> "provider API \n ( backend API)"   :  process request
+
+   "provider API \n ( backend API)" ->  "BC Health API Gateway"  :  API provider response
+
+    "BC Health API Gateway" -> "client application\n (relying party)" : API provider Response
+
+    "client application\n (relying party)" -> "User  \n(browser / user-agent)"    : Application Response
+
 @enduml
